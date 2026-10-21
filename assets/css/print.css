@@ -1,0 +1,153 @@
+/* ========================================================
+   SISTEM INFORMASI PARKIR BERBASIS WEB
+   Stylesheet Cetak Thermal (58mm / 80mm)
+   ======================================================== */
+
+@page {
+    size: auto;
+    margin: 4mm 2mm;
+}
+
+/* Tampilan Normal di Layar (Preview Mode) */
+.thermal-receipt-container {
+    width: 320px;
+    margin: 20px auto;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #000000;
+}
+
+.receipt-header {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.receipt-title {
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.receipt-subtitle {
+    font-size: 11px;
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+.receipt-divider {
+    border-top: 1px dashed #000000;
+    margin: 8px 0;
+}
+
+.receipt-double-divider {
+    border-top: 2px dashed #000000;
+    margin: 8px 0;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.receipt-row .label {
+    color: #333333;
+}
+
+.receipt-row .value {
+    font-weight: 700;
+    text-align: right;
+}
+
+.receipt-row.total {
+    font-size: 14px;
+    font-weight: 800;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed #000000;
+}
+
+.receipt-qr {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.receipt-qr img,
+.receipt-qr svg {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 0 auto;
+    display: block;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 11px;
+}
+
+/* ========================================================
+   Aturan Cetak (@media print)
+   ======================================================== */
+@media print {
+    /* Sembunyikan semua elemen UI aplikasi saat pencetakan */
+    body * {
+        visibility: hidden;
+    }
+    
+    .app-sidebar, 
+    .app-navbar, 
+    .btn, 
+    .no-print, 
+    .alert, 
+    .sidebar-backdrop {
+        display: none !important;
+    }
+    
+    /* Hanya tampilkan area struk */
+    .thermal-receipt-container,
+    .thermal-receipt-container * {
+        visibility: visible;
+    }
+    
+    .thermal-receipt-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        max-width: 58mm; /* Ukuran thermal standar, otomatis adaptif jika 80mm */
+        margin: 0 !important;
+        padding: 2mm !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        color: #000000 !important;
+        font-size: 11px !important;
+    }
+
+    .receipt-row {
+        font-size: 10px !important;
+    }
+
+    .receipt-row.total {
+        font-size: 12px !important;
+    }
+
+    .receipt-title {
+        font-size: 13px !important;
+    }
+
+    .receipt-qr img,
+    .receipt-qr svg {
+        max-width: 130px !important;
+        max-height: 130px !important;
+    }
+}
